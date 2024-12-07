@@ -2,13 +2,9 @@
 
 namespace BattleShipGame {
     Response FileManager::WriteField(const Field& field, const std::string& path) {
-        Response res;
-
         std::ofstream file(path);
         if (!file.is_open()) {
-            res.SetCode(500);
-            res.SetError("Can't open file for writing: " + path);
-            return res;
+            return Response(500, "Can't open file for writing: " + path);
         }
 
         file << field.GetWidth() << " " << field.GetHeight() << "\n";
@@ -21,18 +17,13 @@ namespace BattleShipGame {
 
         file.close();
 
-        res.SetCode(200);
-        return res;
+        return Response(200, "ok");
     }
 
     Response FileManager::ReadField(Field& field, const std::string& path) {
-        Response res;
-
         std::ifstream file(path);
         if (!file.is_open()) {
-            res.SetCode(500);
-            res.SetError("Can't open file for reading: " + path);
-            return res;
+            return Response(500, "Can't open file for reading: " + path);
         }
 
         int width, height;
@@ -52,18 +43,13 @@ namespace BattleShipGame {
 
         file.close();
 
-        res.SetCode(200);
-        return res;
+        return Response(200, "ok");
     }
 
     Response FileManager::WriteFieldMatrix(const Field& field, const std::string& path) {
-        Response res;
-
         std::ofstream file(path);
         if (!file.is_open()) {
-            res.SetCode(500);
-            res.SetError("Can't open file for writing: " + path);
-            return res;
+            return Response(500, "Can't open file for writing: " + path);
         }
 
         for (int j = 0; j < field.GetHeight(); j++) {
@@ -75,7 +61,6 @@ namespace BattleShipGame {
 
         file.close();
 
-        res.SetCode(200);
-        return res;
+        return Response(200, "ok");
     }
 }

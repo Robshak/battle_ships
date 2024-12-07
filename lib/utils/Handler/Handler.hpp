@@ -6,10 +6,9 @@
 #include <string>
 #include <functional>
 
-#include <Commands/Commands.hpp>
+#include <Commands.hpp>
 
-#include <WorkWithString/WorkWithString.hpp>
-#include <Error/Error.hpp>
+#include <WorkWithString.hpp>
 
 namespace BattleShipGame {
     class Manager; // Forward declaration

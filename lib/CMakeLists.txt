@@ -1,4 +1,5 @@
+add_subdirectory(utils)
+add_subdirectory(Structures)
 add_subdirectory(Field)
 add_subdirectory(Manager)
 add_subdirectory(Strategies)
-add_subdirectory(utils)

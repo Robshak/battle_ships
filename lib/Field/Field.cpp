@@ -88,13 +88,18 @@ namespace BattleShipGame {
         return AddShip(x, y, size, orientation);
     }
 
-    int Field::Shot(long long x, long long y) {
+    Response Field::Shot(long long x, long long y) {
         std::pair<long long, long long> shipCoord = FindShip(x, y);
         if (shipCoord.first == -1) {
-            return 0;
+            std::cout << "here\n";
+            return Response(200, "miss");
         }
 
-        int res = ships_[shipCoord].Shot(x, y);
+        Response res = ships_[shipCoord].Shot(x, y);
+
+        if (!ships_[shipCoord].IsAlive()) {
+            ships_.erase(shipCoord);
+        }
 
         return res;
     }

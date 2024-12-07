@@ -2,10 +2,11 @@
 
 #include <map>
 #include <vector>
+#include <iostream>
 
-#include "Ship/Ship.hpp"
+#include <Ship.hpp>
 
-#include <Response/Response.hpp>
+#include <Response.hpp>
 
 namespace BattleShipGame {
     class Field {
@@ -33,8 +34,7 @@ namespace BattleShipGame {
         Response AddShip(long long x, long long y, int size, char orientation);
         Response AddShip(Ship ship);
         
-        // 0 - missed, 1 - hit, 2 - killed
-        int Shot(long long x, long long y);
+        Response Shot(long long x, long long y);
 
         bool CheckCell(long long x, long long y) const;
 

@@ -1,6 +1,9 @@
 #pragma once
 
 #include <random>
+#include <iostream>
+
+#include <Response.hpp>
 
 namespace BattleShipGame {
     class Ship {
@@ -24,6 +27,6 @@ namespace BattleShipGame {
         bool IsHorizontal() const;
         char GetDirection() const;
 
-        int Shot(long long x, long long y); // 0 - missed, 1 - hit, 2 - killed
+        Response Shot(long long x, long long y);
     };
 }

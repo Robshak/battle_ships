@@ -3,4 +3,6 @@ add_library(ShipPlacementStrategies ShipPlacementStrategies.cpp ShipPlacementStr
 target_link_libraries(ShipPlacementStrategies PUBLIC
 Field)
 
-target_include_directories(ShipPlacementStrategies PUBLIC ${PROJECT_SOURCE_DIR}/lib)
+target_include_directories(ShipPlacementStrategies PUBLIC
+    ${PROJECT_SOURCE_DIR}
+)

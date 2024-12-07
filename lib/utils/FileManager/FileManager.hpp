@@ -3,10 +3,10 @@
 #include <string>
 #include <fstream>
 
-#include <Field/Field.hpp>
-#include <Field/Ship/Ship.hpp>
+#include <Field.hpp>
+#include <Ship.hpp>
 
-#include <Response/Response.hpp>
+#include <Response.hpp>
 
 namespace BattleShipGame {
     class FileManager {

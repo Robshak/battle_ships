@@ -1,6 +1,11 @@
 add_library(CustomShooting CustomShooting.cpp CustomShooting.hpp)
 
 target_link_libraries(CustomShooting PUBLIC
-ShootingStrategies)
+    GameSettings
+    ShootingStrategies
+    Response
+)
 
-target_include_directories(CustomShooting PUBLIC ${PROJECT_SOURCE_DIR}/lib)
+target_include_directories(CustomShooting PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
