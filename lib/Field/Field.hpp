@@ -1,11 +1,17 @@
 #pragma once
+
 #include <map>
+#include <vector>
 
 #include "Ship/Ship.hpp"
+
+#include <Response/Response.hpp>
 
 namespace BattleShipGame {
     class Field {
     private:
+        bool isLoaded_ = false;
+
         int height_;
         int width_;
 
@@ -14,9 +20,29 @@ namespace BattleShipGame {
         Field(int height = 0, int width = 0);
         ~Field() = default;
 
-        int GetCountOfAliveShips() const { return ships_.size(); }
+        int GetHeight() const;
+        int GetWidth() const;
+        bool IsLoaded() const;
+        int GetCountOfAliveShips() const;
+        std::vector<Ship> GetShips() const;
 
-        bool AddShip(long long x, long long y, int size, char orientation);
-        int Shot(long long x, long long y); // 0 - missed, 1 - hit, 2 - killed
+        void SetHeight(int height);
+        void SetWidth(int width);
+        void SetSize(int height, int width);
+
+        Response AddShip(long long x, long long y, int size, char orientation);
+        Response AddShip(Ship ship);
+        
+        // 0 - missed, 1 - hit, 2 - killed
+        int Shot(long long x, long long y);
+
+        bool CheckCell(long long x, long long y) const;
+
+        void Clear();
+    private:
+        // (-1, -1) - no ship, (x, y) - ship
+        std::pair<long long, long long> FindShip(long long x, long long y) const;
+        Response isAvailableCell(long long x, long long y,
+                                 long long xShip, long long yShip) const;
     };
 }

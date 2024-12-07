@@ -1,9 +1,12 @@
 #pragma once
+
 #include <iostream>
 #include <vector>
 #include <string>
 
-#include <Manager/Manager.hpp>
+#include <FileManager/FileManager.hpp>
+
+#include <Response/Response.hpp>
 
 namespace BattleShipGame {
     class Manager; // Forward declaration
@@ -16,25 +19,37 @@ namespace BattleShipGame {
 
     class CommandPing : public Command {
     public:
-        void execute(std::vector<std::string> args, Manager& manager) override {
-            std::cout << "pong\n";
-        }
+        void execute(std::vector<std::string> args, Manager& manager) override;
     };
 
     class CommandExit : public Command {
     public:
-        void execute(std::vector<std::string> args, Manager& manager) override {
-            exit(0);
-        }
+        void execute(std::vector<std::string> args, Manager& manager) override;
     };
 
     class CommandCreate : public Command {
     public:
-        void execute(std::vector<std::string> args, Manager& manager) override {
-            for (int i = 1; i < args.size(); i++) {
-                std::cout << args[i] << ' ';
-            }
-            std::cout << '\n';
-        }
+        void execute(std::vector<std::string> args, Manager& manager) override;
+    };
+
+    class CommandStart : public Command {
+    public:
+        void execute(std::vector<std::string> args, Manager& manager) override;
+    };
+
+
+    class CommandDump : public Command {
+    public:
+        void execute(std::vector<std::string> args, Manager& manager) override;
+    };
+
+    class CommandLoad : public Command {
+    public:
+        void execute(std::vector<std::string> args, Manager& manager) override;
+    };
+
+    class CommandMatrix : public Command {
+    public:
+        void execute(std::vector<std::string> args, Manager& manager) override;
     };
 }

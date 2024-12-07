@@ -2,9 +2,10 @@
 
 #include <vector>
 
-#include<utils/Handler/Handler.hpp>
-#include<Field/Field.hpp>
+#include <utils/Handler/Handler.hpp>
+#include <Field/Field.hpp>
 
+#include <Response/Response.hpp>
 
 namespace BattleShipGame {
     class Manager {
@@ -24,10 +25,7 @@ namespace BattleShipGame {
             int width;
             int height;
 
-            std::vector<int> shipsWithSize1;
-            std::vector<int> shipsWithSize2;
-            std::vector<int> shipsWithSize3;
-            std::vector<int> shipsWithSize4;
+            std::vector<int> countOfShips = std::vector<int>(4, 0);
 
             Role role;
         };
@@ -46,6 +44,8 @@ namespace BattleShipGame {
             return !gameState_.isGameFinished;
         }
 
+        Field& GetField() { return field_; }
+
         bool SetRole(std::string role) {
             if(role == "master") {
                 gameSettings_.role = GameSettings::Role::Master;
@@ -57,6 +57,27 @@ namespace BattleShipGame {
             }
 
             return false;
+        }
+
+        Response StartGame() {
+            Response res;
+
+            if (gameState_.isGameStarted) {
+                res.SetCode(400);
+                res.SetError("Game is already started");
+                return res;
+            }
+            if (field_.GetCountOfAliveShips() == 0) {
+                res.SetCode(400);
+                res.SetError("Field is empty");
+                return res;
+            }
+
+            //FIX
+
+            gameState_.isGameStarted = true;
+            res.SetCode(200);
+            return res;
         }
     };
 }

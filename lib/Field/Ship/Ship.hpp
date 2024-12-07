@@ -1,4 +1,5 @@
 #pragma once
+
 #include <random>
 
 namespace BattleShipGame {
@@ -16,11 +17,12 @@ namespace BattleShipGame {
         Ship(long long x, long long y, int size, char orientation);
         ~Ship() = default;
 
-        long long GetX() const { return x_; };
-        long long GetY() const { return y_; };
-        int GetSize() const { return size_; };
-        bool IsAlive() const { return isAlive_; };
-        bool IsHorizontal() const { return isHorizontal_; };
+        long long GetX() const;
+        long long GetY() const;
+        int GetSize() const;
+        bool IsAlive() const;
+        bool IsHorizontal() const;
+        char GetDirection() const;
 
         int Shot(long long x, long long y); // 0 - missed, 1 - hit, 2 - killed
     };
