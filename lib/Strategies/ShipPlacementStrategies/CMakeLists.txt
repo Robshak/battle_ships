@@ -1,8 +1,11 @@
 add_library(ShipPlacementStrategies ShipPlacementStrategies.cpp ShipPlacementStrategies.hpp)
 
 target_link_libraries(ShipPlacementStrategies PUBLIC
-Field)
+    Field
+    Response
+    GameSettings
+)
 
 target_include_directories(ShipPlacementStrategies PUBLIC
-    ${PROJECT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )

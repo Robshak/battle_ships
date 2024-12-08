@@ -1,18 +1,27 @@
 #include "CustomShooting.hpp"
 
 namespace BattleShipGame {
-    Response CustomShooting::Shot() {
-        if (isWaitResult_) {
-            return Response(400, "Result not set");
-        }
+    std::pair<long long, long long> CustomShooting::CreateShot() {
+        long long x = template_[currentIndex_].first + currentX_;
+        long long y = template_[currentIndex_].second + currentY_;
 
-        long long x = currentIndex_ % gameSettings_.width;
-        long long y = currentIndex_ / gameSettings_.width;
+        long long lastX = currentX_ + templateWidth_ - 1;
 
         currentIndex_++;
-        isWaitResult_ = true;
+        if (currentIndex_ == template_.size()) {
+            currentIndex_ = 0;
+            if (lastX + temaplateSpace_ + templateWidth_ < gameSettings_.width) {
+                currentX_ += temaplateSpace_ + templateWidth_;
+            } else {
+                currentX_ = 0;
+                currentY_ += temaplateSpace_ + templateHeight_;
+                if (currentY_ + templateHeight_ > gameSettings_.height) {
+                    currentY_ = 0;
+                }
+            }
+        }
 
-        return Response(200, std::to_string(x) + " " + std::to_string(y));
+        return std::make_pair(x, y);
     }
 
     Response CustomShooting::Clear() {

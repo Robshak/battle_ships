@@ -12,7 +12,7 @@ namespace BattleShipGame {
     private:
         int currentIndex_ = 0;
     public:
-        Response Shot() override;
+        std::pair<long long, long long> CreateShot() override;
         Response Clear() override;
 
         std::unique_ptr<ShootingStrategy> Clone() const override;

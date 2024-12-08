@@ -41,7 +41,6 @@ namespace BattleShipGame {
     long long Ship::GetY() const { return y_; };
     int Ship::GetSize() const { return size_; };
     bool Ship::IsAlive() const { return isAlive_; };
-    bool Ship::IsHorizontal() const { return isHorizontal_; };
     char Ship::GetDirection() const { return isHorizontal_ ? 'h' : 'v'; };
     
     Response Ship::Shot(long long x, long long y) {

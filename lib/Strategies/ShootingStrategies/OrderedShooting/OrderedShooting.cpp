@@ -1,18 +1,14 @@
 #include "OrderedShooting.hpp"
 
 namespace BattleShipGame {
-    Response OrderedShooting::Shot() {
-        if (isWaitResult_) {
-            return Response(400, "Result not set");
-        }
-
+    std::pair<long long, long long> OrderedShooting::CreateShot() {
         long long x = currentIndex_ % gameSettings_.width;
         long long y = currentIndex_ / gameSettings_.width;
 
         currentIndex_++;
         isWaitResult_ = true;
 
-        return Response(200, std::to_string(x) + " " + std::to_string(y));
+        return std::make_pair(x, y);
     }
 
     Response OrderedShooting::Clear() {

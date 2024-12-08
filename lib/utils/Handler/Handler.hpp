@@ -11,7 +11,7 @@
 #include <WorkWithString.hpp>
 
 namespace BattleShipGame {
-    class Manager; // Forward declaration
+    class Manager;
 
     class Handler {
     private:

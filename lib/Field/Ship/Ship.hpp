@@ -23,7 +23,6 @@ namespace BattleShipGame {
         long long GetY() const;
         int GetSize() const;
         bool IsAlive() const;
-        bool IsHorizontal() const;
         char GetDirection() const;
 
         Response Shot(long long x, long long y);

@@ -6,6 +6,7 @@
 #include <Field.hpp>
 #include <Ship.hpp>
 #include <GameSettings.hpp>
+#include <ShootingStrategies.hpp>
 
 #include <Response.hpp>
 
@@ -16,6 +17,7 @@ namespace BattleShipGame {
         static Response ReadField(Field& field, const std::string& path,
                                   GameSettings& gameSettings);
 
-        static Response WriteFieldToMatrix(const Field& field, const std::string& path);
+        static Response WriteShipMatrix(const Field& field, const std::string& path);
+        static Response WriteShotMatrix(ShootingStrategy& strategy, const std::string& path);
     };
 }

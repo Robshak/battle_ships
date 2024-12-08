@@ -7,7 +7,7 @@
 #include <Response.hpp>
 
 namespace BattleShipGame {
-    class Manager; // Forward declaration
+    class Manager;
 
     class Command {
     public:

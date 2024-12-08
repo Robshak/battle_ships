@@ -10,6 +10,7 @@
 
 #include <GameSettings.hpp>
 
+#include <ShipPlacementStrategies.hpp>
 #include <ShootingStrategies.hpp>
 #include <OrderedShooting.hpp>
 #include <CustomShooting.hpp>
@@ -61,7 +62,8 @@ namespace BattleShipGame {
 
         Response WriteField(const std::string path) const;
         Response ReadField(const std::string path);
-        Response FieldToMatrix(const std::string path) const;
+        Response ShipsToMatrix(const std::string path) const;
+        Response ShotsToMatrix(const std::string path) const;
 
         Response StartGame();
         Response StopGame();

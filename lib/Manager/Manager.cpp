@@ -124,6 +124,16 @@ namespace BattleShipGame {
 
         if (role == "master") {
             gameSettings_.role = GameSettings::Role::Master;
+
+            gameSettings_.width = 15;
+            gameSettings_.height = 15;
+            gameSettings_.countOfShips[0] = 4;
+            gameSettings_.countOfShips[1] = 3;
+            gameSettings_.countOfShips[2] = 2;
+            gameSettings_.countOfShips[3] = 1;
+
+            field_.SetSize(gameSettings_.width, gameSettings_.height);
+
             return Response(200, "ok");
         }
         if (role == "slave") {
@@ -138,9 +148,13 @@ namespace BattleShipGame {
         if (gameState_.isGameStarted) {
             return Response(400, "Game is already started");
         }
-
         if (shootingStrategies_.find(strategy) == shootingStrategies_.end()) {
             return Response(400, "Unknown strategy: " + strategy);
+        }
+
+        if (strategy == "custom" &&
+           (gameSettings_.width < 14 || gameSettings_.height < 5)) {
+            strategy = "ordered";
         }
 
         shootingStrategy_ = shootingStrategies_[strategy]->Clone();
@@ -192,6 +206,13 @@ namespace BattleShipGame {
     }
 
     Response Manager::SetResult(std::string result) {
+        if (!gameState_.isGameStarted) {
+            return Response(400, "Game is not started");
+        }
+        if (gameState_.isGameFinished) {
+            return Response(400, "Game is finished");
+        }
+
         Response res = shootingStrategy_->SetResult(result);
         
         if (shootingStrategy_->GetCountOfKills() == GetCountOfShips()) {
@@ -215,27 +236,36 @@ namespace BattleShipGame {
         return res;
     }
 
-    Response Manager::FieldToMatrix(const std::string path) const {
-        return FileManager::WriteFieldToMatrix(field_, path);
+    Response Manager::ShipsToMatrix(const std::string path) const {
+        return FileManager::WriteShipMatrix(field_, path);
+    }
+
+    Response Manager::ShotsToMatrix(const std::string path) const {
+        return FileManager::WriteShotMatrix(*shootingStrategy_, path);
     }
 
     Response Manager::StartGame() {
         if (gameState_.isGameStarted) {
             return Response(400, "Game is already started");
         }
-        if (field_.GetCountOfAliveShips() == 0) {
-            return Response(400, "No ships on the field");
-        }
         if (!shootingStrategy_) {
             return Response(400, "No shooting strategy");
         }
 
-        if (gameSettings_.role == GameSettings::Role::Master) {
-            // TODO
+        if (field_.IsLoaded()) {
+            if (field_.GetCountOfAliveShips() == 0) {
+                return Response(400, "No ships on the field");
+            }
+
+            gameState_.isGameStarted = true;
+            return Response(200, "ok");
         }
 
-        gameState_.isGameStarted = true;
-        return Response(200, "ok");
+        Response res = ShipPlacementStrategies::ApplyStrategy(field_, gameSettings_, "greedy_random");
+        if (res.IsOk()) {
+            gameState_.isGameStarted = true;
+        }
+        return res;
     }
 
     Response Manager::StopGame() {
@@ -243,6 +273,7 @@ namespace BattleShipGame {
             return Response(400, "Game is not started");
         }
 
+        field_.DeleteShips();
         gameState_.isGameStarted = false;
 
         return Response(200, "ok");

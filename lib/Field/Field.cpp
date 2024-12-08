@@ -30,7 +30,7 @@ namespace BattleShipGame {
             errorString += "Size of field: " + std::to_string(width_) + "x" + std::to_string(height_) + "\n";
             errorString += "Coordinates of ship: (" + std::to_string(x) + ", " + std::to_string(y) + ")\n";
 
-            return Response(400, errorString);
+            return Response(401, errorString);
         }
 
         if (orientation == 'h') {
@@ -100,7 +100,7 @@ namespace BattleShipGame {
         for (int i = x - 3; i <= x; i++) {
             if (ships_.find({i, y}) != ships_.end()) {
                 Ship ship = ships_.at({i, y});
-                if (ship.GetX() <= x && x <= ship.GetX() + ship.GetSize() - 1 && ship.IsHorizontal()) {
+                if (ship.GetX() <= x && x <= ship.GetX() + ship.GetSize() - 1 && ship.GetDirection() == 'h') {
                     return {i, y};
                 }
             }
@@ -109,7 +109,7 @@ namespace BattleShipGame {
         for (int i = y - 3; i <= y; i++) {
             if (ships_.find({x, i}) != ships_.end()) {
                 Ship ship = ships_.at({x, i});
-                if (ship.GetY() <= y && y <= ship.GetY() + ship.GetSize() - 1 && !ship.IsHorizontal()) {
+                if (ship.GetY() <= y && y <= ship.GetY() + ship.GetSize() - 1 && ship.GetDirection() == 'v') {
                     return {x, i};
                 }
             }
@@ -139,6 +139,10 @@ namespace BattleShipGame {
         isLoaded_ = false;
         height_ = 0;
         width_ = 0;
+        ships_.clear();
+    }
+
+    void Field::DeleteShips() {
         ships_.clear();
     }
 }

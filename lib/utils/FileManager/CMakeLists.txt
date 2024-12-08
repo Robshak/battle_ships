@@ -5,6 +5,7 @@ target_link_libraries(FileManager PUBLIC
     Ship
     Response
     GameSettings
+    ShootingStrategies
 )
 
 target_include_directories(FileManager PUBLIC

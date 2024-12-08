@@ -117,6 +117,16 @@ namespace BattleShipGame {
     }
 
     Response CommandMatrix::execute(std::vector<std::string> args, Manager& manager) {
-        return manager.FieldToMatrix(args[1]);
+        if (args.size() < 3) {
+            return Response(400, "Too few arguments");
+        }
+
+        if (args[1] == "ship") {
+            return manager.ShipsToMatrix(args[2]);
+        } else if (args[1] == "shot") {
+            return manager.ShotsToMatrix(args[2]);
+        } else {
+            return Response(400, "Unknown command: matrix " + args[1]);
+        }
     }
 }

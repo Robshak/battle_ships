@@ -21,8 +21,8 @@ namespace BattleShipGame {
         void SetError(Error error);
         void SetError(std::string message);
 
-        bool IsOk() const { return code_ == 200; }
-        int StatusCode() const { return code_; }
+        bool IsOk() const;
+        int StatusCode() const;
         std::string ResponseMessage() const;
     };
 }

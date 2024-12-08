@@ -39,6 +39,7 @@ namespace BattleShipGame {
         bool CheckCell(long long x, long long y) const;
 
         void Clear();
+        void DeleteShips();
     private:
         // (-1, -1) - no ship, (x, y) - ship
         std::pair<long long, long long> FindShip(long long x, long long y) const;

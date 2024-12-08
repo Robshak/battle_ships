@@ -2,9 +2,12 @@
 
 namespace BattleShipGame {
     int ShootingStrategy::GetCountOfKills() const { return countOfKills_; }
+    std::vector<std::vector<bool>>& ShootingStrategy::GetShots() { return shots_; }
 
     void ShootingStrategy::InitSettings(GameSettings settings) {
         gameSettings_ = settings;
+
+        shots_.resize(gameSettings_.height, std::vector<bool>(gameSettings_.width, false));
     }
 
     Response ShootingStrategy::SetResult(std::string result) {
@@ -33,5 +36,21 @@ namespace BattleShipGame {
         }
 
         return res;
+    }
+
+    Response ShootingStrategy::Shot() {
+        if (isWaitResult_) {
+            return Response(400, "Result not set");
+        }
+
+        std::pair<long long, long long> shot = CreateShot();
+        long long x = shot.first;
+        long long y = shot.second;
+
+        shots_[x][y] = true;
+
+        isWaitResult_ = true;
+        
+        return Response(200, std::to_string(x) + " " + std::to_string(y));
     }
 }
