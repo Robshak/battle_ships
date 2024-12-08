@@ -4,6 +4,7 @@ target_link_libraries(FileManager PUBLIC
     Field
     Ship
     Response
+    GameSettings
 )
 
 target_include_directories(FileManager PUBLIC

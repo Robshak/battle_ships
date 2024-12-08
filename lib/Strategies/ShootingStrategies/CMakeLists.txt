@@ -1,11 +1,11 @@
-add_library(ShootingStrategies INTERFACE)
+add_library(ShootingStrategies ShootingStrategies.cpp ShootingStrategies.hpp)
 
-target_link_libraries(ShootingStrategies INTERFACE
+target_link_libraries(ShootingStrategies PUBLIC
     GameSettings
     Response
 )
 
-target_include_directories(ShootingStrategies INTERFACE
+target_include_directories(ShootingStrategies PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/Structures/GameSettings
 )

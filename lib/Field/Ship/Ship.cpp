@@ -45,10 +45,6 @@ namespace BattleShipGame {
     char Ship::GetDirection() const { return isHorizontal_ ? 'h' : 'v'; };
     
     Response Ship::Shot(long long x, long long y) {
-        for (int i = 0; i < 4; i++) {
-            std::cout << (cellsState_ & (1 << i)) << " ";
-        }
-        std::cout << "\n";
         if (x == x_ && !isHorizontal_) {
             int index = y - y_;
 

@@ -8,6 +8,7 @@ target_link_libraries(Manager PUBLIC
     CustomShooting
     OrderedShooting
     Response
+    FileManager
 )
 
 target_include_directories(Manager PUBLIC 

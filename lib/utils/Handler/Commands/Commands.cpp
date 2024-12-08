@@ -13,8 +13,7 @@ namespace BattleShipGame {
 
         return manager.SetRole(args[1]);
     }
-
-
+    
     Response CommandExit::execute(std::vector<std::string> args, Manager& manager) {
         std::cout << "ok\n";
         exit(0);
@@ -27,7 +26,6 @@ namespace BattleShipGame {
     Response CommandStop::execute(std::vector<std::string> args, Manager& manager) {
         return manager.StopGame();
     }
-
 
     Response CommandSet::execute(std::vector<std::string> args, Manager& manager) {
         if (args.size() < 2) {
@@ -58,7 +56,7 @@ namespace BattleShipGame {
             if (args.size() < 3) {
                 return Response(400, "Too few arguments");
             }
-            return manager.GetShootingStrategy().SetResult(args[2]);
+            return manager.SetResult(args[2]);
         }
 
         return Response(400, "Unknown command: set " + args[1]);
@@ -70,14 +68,20 @@ namespace BattleShipGame {
         }
 
         if (args[1] == "width") {
-            return Response(200, std::to_string(manager.GetField().GetWidth()));
+            return manager.GetWidth();
         } else if (args[1] == "height") {
-            return Response(200, std::to_string(manager.GetField().GetHeight()));
+            return manager.GetHeight();
         } else if (args[1] == "count") {
             if (args.size() < 3) {
                 return Response(400, "Too few arguments");
             }
-            // return Response(200, std::to_string(manager.GetField().Get(std::stoi(args[2]))));
+            int sizeOfShip = std::stoi(args[2]);
+            
+            if (sizeOfShip > 5 || sizeOfShip < 1) {
+                return Response(400, "Invalid size: " + args[2]);
+            }
+
+            return manager.GetCountOfShips(sizeOfShip);
         }
 
         return Response(400, "Unknown command: get " + args[1]);
@@ -85,18 +89,11 @@ namespace BattleShipGame {
 
     Response CommandShot::execute(std::vector<std::string> args, Manager& manager) {
         if (args.size() < 3) {
-            if (manager.IsGameStarted().ResponseMessage() == "no") {
-                return Response(400, "Game is not started");
-            }
-            return manager.GetShootingStrategy().Shot();
+            return manager.Shot();
         } else {
-            if (manager.IsGameStarted().ResponseMessage() == "no") {
-                return Response(400, "Game is not started");
-            }
-            return manager.GetField().Shot(std::stoi(args[1]), std::stoi(args[2]));
+            return manager.Shot(std::stoi(args[1]), std::stoi(args[2]));
         }
     }
-
 
     Response CommandFinished::execute(std::vector<std::string> args, Manager& manager) {
         return manager.IsGameFinished();
@@ -112,14 +109,14 @@ namespace BattleShipGame {
 
 
     Response CommandDump::execute(std::vector<std::string> args, Manager& manager) {
-        return FileManager::WriteField(manager.GetField(), args[1]);
+        return manager.WriteField(args[1]);
     }
 
     Response CommandLoad::execute(std::vector<std::string> args, Manager& manager) {
-        return FileManager::ReadField(manager.GetField(), args[1]);
+        return manager.ReadField(args[1]);
     }
 
     Response CommandMatrix::execute(std::vector<std::string> args, Manager& manager) {
-        return FileManager::WriteFieldMatrix(manager.GetField(), args[1]);
+        return manager.FieldToMatrix(args[1]);
     }
 }

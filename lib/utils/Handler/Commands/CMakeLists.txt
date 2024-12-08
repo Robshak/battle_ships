@@ -2,8 +2,6 @@ add_library(Commands Commands.cpp Commands.hpp)
 
 target_link_libraries(Commands PUBLIC
     Manager
-    FileManager
-    Field
     Response
 )
 

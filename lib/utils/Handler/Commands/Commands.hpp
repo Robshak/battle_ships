@@ -4,8 +4,6 @@
 #include <vector>
 #include <string>
 
-#include <FileManager.hpp>
-
 #include <Response.hpp>
 
 namespace BattleShipGame {
@@ -28,6 +26,7 @@ namespace BattleShipGame {
         Response execute(std::vector<std::string> args, Manager& manager) override;
     };
 
+    
     class CommandExit : public Command {
     public:
         Response execute(std::vector<std::string> args, Manager& manager) override;
@@ -40,6 +39,7 @@ namespace BattleShipGame {
     public:
         Response execute(std::vector<std::string> args, Manager& manager) override;
     };
+
 
     class CommandSet : public Command {
     public:
@@ -54,6 +54,7 @@ namespace BattleShipGame {
     public:
         Response execute(std::vector<std::string> args, Manager& manager) override;
     };
+
 
     class CommandFinished : public Command {
     public:

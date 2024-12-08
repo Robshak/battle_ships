@@ -11,13 +11,18 @@ namespace BattleShipGame {
     class ShootingStrategy {
     protected:
         GameSettings gameSettings_;
-        bool isWaitResult_;
-        int result_; // 0 - miss, 1 - hit, 2 - kill
+        int countOfKills_ = 0;
+        bool isWaitResult_ = false;
+        int result_ = 0; // 0 - miss, 1 - hit, 2 - kill
     public:
         virtual ~ShootingStrategy() = default;
-        virtual void InitSettings(GameSettings settings) = 0;
-        virtual Response SetResult(std::string result) = 0;
+
+        int GetCountOfKills() const;
+        void InitSettings(GameSettings settings);
+        Response SetResult(std::string result);
+
         virtual Response Shot() = 0;
+        virtual Response Clear() = 0;
 
         virtual std::unique_ptr<ShootingStrategy> Clone() const = 0;
     };

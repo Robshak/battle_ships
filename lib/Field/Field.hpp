@@ -2,7 +2,6 @@
 
 #include <map>
 #include <vector>
-#include <iostream>
 
 #include <Ship.hpp>
 
@@ -27,6 +26,7 @@ namespace BattleShipGame {
         int GetCountOfAliveShips() const;
         std::vector<Ship> GetShips() const;
 
+        void SetLoaded(bool isLoaded);
         void SetHeight(int height);
         void SetWidth(int width);
         void SetSize(int height, int width);

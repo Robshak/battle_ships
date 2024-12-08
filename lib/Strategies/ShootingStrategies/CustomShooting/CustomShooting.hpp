@@ -10,9 +10,8 @@ namespace BattleShipGame {
     private:
         int currentIndex_ = 0;
     public:
-        void InitSettings(GameSettings settings) override;
-        Response SetResult(std::string result) override;
         Response Shot() override;
+        Response Clear() override;
 
         std::unique_ptr<ShootingStrategy> Clone() const override;
     };

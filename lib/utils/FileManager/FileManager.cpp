@@ -20,7 +20,8 @@ namespace BattleShipGame {
         return Response(200, "ok");
     }
 
-    Response FileManager::ReadField(Field& field, const std::string& path) {
+    Response FileManager::ReadField(Field& field, const std::string& path,
+                                    GameSettings& gameSettings) {
         std::ifstream file(path);
         if (!file.is_open()) {
             return Response(500, "Can't open file for reading: " + path);
@@ -30,6 +31,8 @@ namespace BattleShipGame {
         file >> width >> height;
         field.Clear();
         field.SetSize(height, width);
+        gameSettings.width = width;
+        gameSettings.height = height;
 
         int x, y, size;
         char direction;
@@ -39,14 +42,18 @@ namespace BattleShipGame {
             if (!checkAddition.IsOk()) {
                 return checkAddition;
             }
+
+            gameSettings.countOfShips[size - 1]++;
         }
+
+        field.SetLoaded(true);
 
         file.close();
 
         return Response(200, "ok");
     }
 
-    Response FileManager::WriteFieldMatrix(const Field& field, const std::string& path) {
+    Response FileManager::WriteFieldToMatrix(const Field& field, const std::string& path) {
         std::ofstream file(path);
         if (!file.is_open()) {
             return Response(500, "Can't open file for writing: " + path);

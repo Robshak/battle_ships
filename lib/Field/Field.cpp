@@ -19,21 +19,18 @@ namespace BattleShipGame {
         return res;
     }
 
+    void Field::SetLoaded(bool isLoaded) { isLoaded_ = isLoaded; }
     void Field::SetWidth(int width) { width_ = width; }
     void Field::SetHeight(int height) { height_ = height; }
     void Field::SetSize(int width, int height) { width_ = width; height_ = height; }
 
     Response Field::AddShip(long long x, long long y, int size, char orientation) {
-        Response res;
-
         if (x < 0 || x >= width_ || y < 0 || y >= height_) {
-            res.SetCode(400);
             std::string errorString = "Invalid coordinates\n";
             errorString += "Size of field: " + std::to_string(width_) + "x" + std::to_string(height_) + "\n";
             errorString += "Coordinates of ship: (" + std::to_string(x) + ", " + std::to_string(y) + ")\n";
-            res.SetError(errorString);
 
-            return res;
+            return Response(400, errorString);
         }
 
         if (orientation == 'h') {
@@ -47,8 +44,7 @@ namespace BattleShipGame {
                 }
 
                 ships_[{x, y}] = Ship(x, y, size, orientation);
-                res.SetCode(200);
-                return res;
+                return Response(200, "ok");
             }
         } else {
             if (0 <= y && y + size - 1 < height_) {
@@ -61,18 +57,15 @@ namespace BattleShipGame {
                 }
 
                 ships_[{x, y}] = Ship(x, y, size, orientation);
-                res.SetCode(200);
-                return res;
+                return Response(200, "ok");
             }
         }
 
-        res.SetCode(400);
         std::string errorString = "";
         errorString += "The ship cannot fit in the field due to its size. ";
         errorString += "Try changing its position or size.\n";
         errorString += "Coordinates of ship: (" + std::to_string(x) + ", " + std::to_string(y) + ")";
-        res.SetError(errorString);
-        return res;
+        return Response(400, errorString);
     }
 
     bool Field::CheckCell(long long x, long long y) const {
@@ -91,7 +84,6 @@ namespace BattleShipGame {
     Response Field::Shot(long long x, long long y) {
         std::pair<long long, long long> shipCoord = FindShip(x, y);
         if (shipCoord.first == -1) {
-            std::cout << "here\n";
             return Response(200, "miss");
         }
 
@@ -128,24 +120,19 @@ namespace BattleShipGame {
 
     Response Field::isAvailableCell(long long x, long long y,
                                     long long xShip, long long yShip) const {
-        Response res;
-
         for (int i = x - 1; i <= x + 1; i++) {
             for (int j = y - 1; j <= y + 1; j++) {
                 if (FindShip(i, j).first != -1) {
-                    res.SetCode(400);
                     std::string errorString = "";
                     errorString += "The ship cannot be placed because it overlaps with another ship. ";
                     errorString += "Please adjust its position\n";
                     errorString += "Coordinates of ship: (" + std::to_string(xShip) + ", " + std::to_string(yShip) + ")";
-                    res.SetError(errorString);
-                    return res;
+                    return Response(400, errorString);
                 }
             }
         }
 
-        res.SetCode(200);
-        return res;
+        return Response(200, "ok");
     }
 
     void Field::Clear() {
