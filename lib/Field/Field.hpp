@@ -3,47 +3,48 @@
 #include <map>
 #include <vector>
 
+#include <Response.hpp>
 #include <Ship.hpp>
 
-#include <Response.hpp>
-
 namespace BattleShipGame {
-    class Field {
-    private:
-        bool isLoaded_ = false;
+class Field {
+   private:
+    bool isLoaded_ = false;
 
-        int height_;
-        int width_;
+    int height_;
+    int width_;
 
-        std::map<std::pair<long long, long long>, Ship> ships_;
-    public:
-        Field(int height = 0, int width = 0);
-        ~Field() = default;
+    std::map<std::pair<long long, long long>, Ship> ships_;
 
-        int GetHeight() const;
-        int GetWidth() const;
-        bool IsLoaded() const;
-        int GetCountOfAliveShips() const;
-        std::vector<Ship> GetShips() const;
+   public:
+    Field(int height = 0, int width = 0);
+    ~Field() = default;
 
-        void SetLoaded(bool isLoaded);
-        void SetHeight(int height);
-        void SetWidth(int width);
-        void SetSize(int height, int width);
+    int GetHeight() const;
+    int GetWidth() const;
+    bool IsLoaded() const;
+    int GetCountOfAliveShips() const;
+    std::vector<Ship> GetShips() const;
 
-        Response AddShip(long long x, long long y, int size, char orientation);
-        Response AddShip(Ship ship);
-        
-        Response Shot(long long x, long long y);
+    void SetLoaded(bool isLoaded);
+    void SetHeight(int height);
+    void SetWidth(int width);
+    void SetSize(int height, int width);
 
-        bool CheckCell(long long x, long long y) const;
+    Response AddShip(long long x, long long y, int size, char orientation);
+    Response AddShip(Ship ship);
 
-        void Clear();
-        void DeleteShips();
-    private:
-        // (-1, -1) - no ship, (x, y) - ship
-        std::pair<long long, long long> FindShip(long long x, long long y) const;
-        Response isAvailableCell(long long x, long long y,
-                                 long long xShip, long long yShip) const;
-    };
-}
+    Response Shot(long long x, long long y);
+
+    bool CheckCell(long long x, long long y) const;
+
+    void Clear();
+    void DeleteShips();
+
+   private:
+    // (-1, -1) - no ship, (x, y) - ship
+    std::pair<long long, long long> FindShip(long long x, long long y) const;
+    Response isAvailableCell(long long x, long long y, long long xShip,
+                             long long yShip) const;
+};
+}  // namespace BattleShipGame

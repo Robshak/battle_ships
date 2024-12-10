@@ -1,24 +1,23 @@
 #pragma once
 
-#include <unordered_map>
-#include <memory>
 #include <iostream>
+#include <memory>
 #include <string>
-#include <functional>
+#include <unordered_map>
 
 #include <Commands.hpp>
-
 #include <WorkWithString.hpp>
 
 namespace BattleShipGame {
-    class Manager;
+class Manager;
 
-    class Handler {
-    private:
-        std::unordered_map<std::string, std::unique_ptr<Command>> commands_;
-    public:
-        Handler();
+class Handler {
+   private:
+    std::unordered_map<std::string, std::unique_ptr<Command>> commands_;
 
-        void Run(Manager& manager);
-    };
-}
+   public:
+    Handler();
+
+    void Run(Manager& manager);
+};
+}  // namespace BattleShipGame

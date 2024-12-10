@@ -3,18 +3,14 @@
 #include <vector>
 
 namespace BattleShipGame {
-    struct GameSettings {
-        enum Role {
-            Unknown,
-            Master,
-            Slave
-        };
+struct GameSettings {
+    enum Role { Unknown, Master, Slave };
 
-        int width;
-        int height;
+    int width;
+    int height;
 
-        std::vector<int> countOfShips = std::vector<int>(4, 0);
+    std::vector<int> countOfShips = std::vector<int>(4, 0);
 
-        Role role = Role::Unknown;
-    };
-}
+    Role role = Role::Unknown;
+};
+}  // namespace BattleShipGame

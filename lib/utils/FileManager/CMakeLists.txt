@@ -6,6 +6,7 @@ target_link_libraries(FileManager PUBLIC
     Response
     GameSettings
     ShootingStrategies
+    WorkWithString
 )
 
 target_include_directories(FileManager PUBLIC

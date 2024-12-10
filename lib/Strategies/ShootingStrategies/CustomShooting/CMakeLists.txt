@@ -4,6 +4,7 @@ target_link_libraries(CustomShooting PUBLIC
     GameSettings
     ShootingStrategies
     Response
+    FileManager
 )
 
 target_include_directories(CustomShooting PUBLIC
