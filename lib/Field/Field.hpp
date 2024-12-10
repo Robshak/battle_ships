@@ -14,7 +14,7 @@ class Field {
     int height_;
     int width_;
 
-    std::map<std::pair<long long, long long>, Ship> ships_;
+    std::map<std::pair<int64_t, int64_t>, Ship> ships_;
 
    public:
     Field(int height = 0, int width = 0);
@@ -31,20 +31,20 @@ class Field {
     void SetWidth(int width);
     void SetSize(int height, int width);
 
-    Response AddShip(long long x, long long y, int size, char orientation);
+    Response AddShip(int64_t x, int64_t y, int size, char orientation);
     Response AddShip(Ship ship);
 
-    Response Shot(long long x, long long y);
+    Response Shot(int64_t x, int64_t y);
 
-    bool CheckCell(long long x, long long y) const;
+    bool CheckCell(int64_t x, int64_t y) const;
 
     void Clear();
     void DeleteShips();
 
    private:
     // (-1, -1) - no ship, (x, y) - ship
-    std::pair<long long, long long> FindShip(long long x, long long y) const;
-    Response isAvailableCell(long long x, long long y, long long xShip,
-                             long long yShip) const;
+    std::pair<int64_t, int64_t> FindShip(int64_t x, int64_t y) const;
+    Response isAvailableCell(int64_t x, int64_t y, int64_t xShip,
+                             int64_t yShip) const;
 };
 }  // namespace BattleShipGame

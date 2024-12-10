@@ -49,9 +49,9 @@ Response ShootingStrategy::Shot() {
         return Response(400, "Result not set");
     }
 
-    std::pair<long long, long long> shot = CreateShot();
-    long long x = shot.first;
-    long long y = shot.second;
+    std::pair<int64_t, int64_t> shot = CreateShot();
+    int64_t x = shot.first;
+    int64_t y = shot.second;
 
     shots_[x][y] = true;
 

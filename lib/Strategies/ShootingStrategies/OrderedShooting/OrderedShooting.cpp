@@ -1,9 +1,9 @@
 #include "OrderedShooting.hpp"
 
 namespace BattleShipGame {
-std::pair<long long, long long> OrderedShooting::CreateShot() {
-    long long x = currentIndex_ % gameSettings_.width;
-    long long y = currentIndex_ / gameSettings_.width;
+std::pair<int64_t, int64_t> OrderedShooting::CreateShot() {
+    int64_t x = currentIndex_ % gameSettings_.width;
+    int64_t y = currentIndex_ / gameSettings_.width;
 
     currentIndex_++;
     isWaitResult_ = true;

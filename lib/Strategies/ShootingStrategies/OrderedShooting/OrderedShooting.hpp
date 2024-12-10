@@ -19,7 +19,7 @@ class OrderedShooting : public ShootingStrategy {
     std::unique_ptr<ShootingStrategy> Clone() const override;
 
    private:
-    std::pair<long long, long long> CreateShot() override;
+    std::pair<int64_t, int64_t> CreateShot() override;
     void ApplyArguments() override;
 };
 }  // namespace BattleShipGame

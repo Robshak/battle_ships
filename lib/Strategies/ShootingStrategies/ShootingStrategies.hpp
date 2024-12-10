@@ -34,7 +34,7 @@ class ShootingStrategy {
     virtual std::unique_ptr<ShootingStrategy> Clone() const = 0;
 
    private:
-    virtual std::pair<long long, long long> CreateShot() = 0;
+    virtual std::pair<int64_t, int64_t> CreateShot() = 0;
     virtual void ApplyArguments() = 0;
 };
 }  // namespace BattleShipGame
