@@ -15,7 +15,7 @@ void OrderedShooting::ApplyArguments() { return; }
 
 bool OrderedShooting::StrategyIsPossible() const { return true; }
 
-Response OrderedShooting::Clear() {
+Response OrderedShooting::ClearImpl() {
     currentIndex_ = 0;
     isWaitResult_ = false;
     return Response(200, "ok");

@@ -59,4 +59,12 @@ Response ShootingStrategy::Shot() {
 
     return Response(200, std::to_string(x) + " " + std::to_string(y));
 }
+
+Response ShootingStrategy::Clear() {
+    result_ = 0;
+    countOfKills_ = 0;
+    isWaitResult_ = false;
+    shots_.clear();
+    return ClearImpl();
+}
 }  // namespace BattleShipGame

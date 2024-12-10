@@ -32,12 +32,12 @@ class CustomShooting : public ShootingStrategy {
 
    public:
     bool StrategyIsPossible() const override;
-    Response Clear() override;
 
     std::unique_ptr<ShootingStrategy> Clone() const override;
 
    private:
     std::pair<int64_t, int64_t> CreateShot() override;
     void ApplyArguments() override;
+    Response ClearImpl() override;
 };
 }  // namespace BattleShipGame

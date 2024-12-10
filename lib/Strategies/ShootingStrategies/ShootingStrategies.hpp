@@ -30,11 +30,13 @@ class ShootingStrategy {
     Response Shot();
 
     virtual bool StrategyIsPossible() const = 0;
-    virtual Response Clear() = 0;
+    Response Clear();
     virtual std::unique_ptr<ShootingStrategy> Clone() const = 0;
 
    private:
     virtual std::pair<int64_t, int64_t> CreateShot() = 0;
     virtual void ApplyArguments() = 0;
+
+    virtual Response ClearImpl() = 0;
 };
 }  // namespace BattleShipGame

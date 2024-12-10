@@ -54,7 +54,7 @@ bool CustomShooting::StrategyIsPossible() const {
            templateHeight_ < gameSettings_.height && template_.size() > 0;
 }
 
-Response CustomShooting::Clear() {
+Response CustomShooting::ClearImpl() {
     currentIndex_ = 0;
     isWaitResult_ = false;
     return Response(200, "ok");
