@@ -28,6 +28,9 @@ namespace BattleShipGame {
         std::getline(std::cin, inputString);
 
         std::vector<std::string> splitString = SplitString(inputString, ' ');
+        if (splitString.size() == 0) {
+            return;
+        }
         cmd = splitString[0];
 
         auto it = commands_.find(cmd);

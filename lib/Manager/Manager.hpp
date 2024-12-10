@@ -32,11 +32,14 @@ namespace BattleShipGame {
         GameState gameState_;
         Handler handler_;
         Field field_;
+
+        bool isAlive = true;
     public:
         Manager();
         ~Manager() = default;
 
         bool Run();
+        Response KillManager();
 
         Response IsGameStarted() const;
         Response IsGameFinished() const;
@@ -57,7 +60,7 @@ namespace BattleShipGame {
         Response GetCountOfShips(int size) const;
 
         Response Shot();
-        Response Shot(long long x, long long y);
+        Response Shot(int64_t x, int64_t y);
         Response SetResult(std::string result);
 
         Response WriteField(const std::string path) const;

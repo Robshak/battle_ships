@@ -24,7 +24,7 @@ namespace BattleShipGame {
     void Field::SetHeight(int height) { height_ = height; }
     void Field::SetSize(int width, int height) { width_ = width; height_ = height; }
 
-    Response Field::AddShip(long long x, long long y, int size, char orientation) {
+    Response Field::AddShip(int64_t x, int64_t y, int size, char orientation) {
         if (x < 0 || x >= width_ || y < 0 || y >= height_) {
             std::string errorString = "Invalid coordinates\n";
             errorString += "Size of field: " + std::to_string(width_) + "x" + std::to_string(height_) + "\n";
@@ -68,21 +68,21 @@ namespace BattleShipGame {
         return Response(400, errorString);
     }
 
-    bool Field::CheckCell(long long x, long long y) const {
+    bool Field::CheckCell(int64_t x, int64_t y) const {
         return FindShip(x, y).first != -1;
     }
 
     Response Field::AddShip(Ship ship) {
-        long long x = ship.GetX();
-        long long y = ship.GetY();
+        int64_t x = ship.GetX();
+        int64_t y = ship.GetY();
         int size = ship.GetSize();
         char orientation = ship.GetDirection();
 
         return AddShip(x, y, size, orientation);
     }
 
-    Response Field::Shot(long long x, long long y) {
-        std::pair<long long, long long> shipCoord = FindShip(x, y);
+    Response Field::Shot(int64_t x, int64_t y) {
+        std::pair<int64_t, int64_t> shipCoord = FindShip(x, y);
         if (shipCoord.first == -1) {
             return Response(200, "miss");
         }
@@ -96,7 +96,7 @@ namespace BattleShipGame {
         return res;
     }
 
-    std::pair<long long, long long> Field::FindShip(long long x, long long y) const {
+    std::pair<int64_t, int64_t> Field::FindShip(int64_t x, int64_t y) const {
         for (int i = x - 3; i <= x; i++) {
             if (ships_.find({i, y}) != ships_.end()) {
                 Ship ship = ships_.at({i, y});
@@ -118,8 +118,8 @@ namespace BattleShipGame {
         return {-1, -1};
     }
 
-    Response Field::isAvailableCell(long long x, long long y,
-                                    long long xShip, long long yShip) const {
+    Response Field::isAvailableCell(int64_t x, int64_t y,
+                                    int64_t xShip, int64_t yShip) const {
         for (int i = x - 1; i <= x + 1; i++) {
             for (int j = y - 1; j <= y + 1; j++) {
                 if (FindShip(i, j).first != -1) {

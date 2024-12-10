@@ -5,6 +5,7 @@
 namespace BattleShipGame {
     struct GameSettings {
         enum Role {
+            Unknown,
             Master,
             Slave
         };
@@ -14,6 +15,6 @@ namespace BattleShipGame {
 
         std::vector<int> countOfShips = std::vector<int>(4, 0);
 
-        Role role;
+        Role role = Role::Unknown;
     };
 }

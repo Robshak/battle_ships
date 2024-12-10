@@ -20,7 +20,7 @@ namespace BattleShipGame {
         
         isAlive_ = true;
     };
-    Ship::Ship(long long x, long long y, int size, char orientation)
+    Ship::Ship(int64_t x, int64_t y, int size, char orientation)
         : x_(x)
         , y_(y)
         , size_(size)
@@ -37,13 +37,13 @@ namespace BattleShipGame {
             }
         }
     
-    long long Ship::GetX() const { return x_; };
-    long long Ship::GetY() const { return y_; };
+    int64_t Ship::GetX() const { return x_; };
+    int64_t Ship::GetY() const { return y_; };
     int Ship::GetSize() const { return size_; };
     bool Ship::IsAlive() const { return isAlive_; };
     char Ship::GetDirection() const { return isHorizontal_ ? 'h' : 'v'; };
     
-    Response Ship::Shot(long long x, long long y) {
+    Response Ship::Shot(int64_t x, int64_t y) {
         if (x == x_ && !isHorizontal_) {
             int index = y - y_;
 

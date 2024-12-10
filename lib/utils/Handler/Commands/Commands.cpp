@@ -15,8 +15,7 @@ namespace BattleShipGame {
     }
     
     Response CommandExit::execute(std::vector<std::string> args, Manager& manager) {
-        std::cout << "ok\n";
-        exit(0);
+        return manager.KillManager();
     }
 
     Response CommandStart::execute(std::vector<std::string> args, Manager& manager) {

@@ -1,11 +1,11 @@
 #include "CustomShooting.hpp"
 
 namespace BattleShipGame {
-    std::pair<long long, long long> CustomShooting::CreateShot() {
-        long long x = template_[currentIndex_].first + currentX_;
-        long long y = template_[currentIndex_].second + currentY_;
+    std::pair<int64_t, int64_t> CustomShooting::CreateShot() {
+        int64_t x = template_[currentIndex_].first + currentX_;
+        int64_t y = template_[currentIndex_].second + currentY_;
 
-        long long lastX = currentX_ + templateWidth_ - 1;
+        int64_t lastX = currentX_ + templateWidth_ - 1;
 
         currentIndex_++;
         if (currentIndex_ == template_.size()) {

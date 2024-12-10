@@ -12,9 +12,17 @@ namespace BattleShipGame {
     };
 
     bool Manager::Run() {
+        if (!isAlive) {
+            return false;
+        }
         handler_.Run(*this);
 
         return true;
+    }
+
+    Response Manager::KillManager() {
+        isAlive = false;
+        return Response(200, "ok");
     }
 
     int Manager::GetCountOfShips() const {
@@ -241,6 +249,9 @@ namespace BattleShipGame {
     }
 
     Response Manager::ShotsToMatrix(const std::string path) const {
+        if (shootingStrategy_ == nullptr) {
+            return Response(400, "No shots yet");
+        }
         return FileManager::WriteShotMatrix(*shootingStrategy_, path);
     }
 
@@ -248,15 +259,17 @@ namespace BattleShipGame {
         if (gameState_.isGameStarted) {
             return Response(400, "Game is already started");
         }
+        if (gameSettings_.role == GameSettings::Role::Unknown) {
+            return Response(400, "Role is not set");
+        }
+        if (GetCountOfShips() == 0) {
+            return Response(400, "Field is empty");
+        }
         if (!shootingStrategy_) {
-            return Response(400, "No shooting strategy");
+            SetShootingStrategy("custom");
         }
 
         if (field_.IsLoaded()) {
-            if (field_.GetCountOfAliveShips() == 0) {
-                return Response(400, "No ships on the field");
-            }
-
             gameState_.isGameStarted = true;
             return Response(200, "ok");
         }

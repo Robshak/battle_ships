@@ -7,8 +7,8 @@
 namespace BattleShipGame {
     class Ship {
     private:
-        long long x_;
-        long long y_;
+        int64_t x_;
+        int64_t y_;
         int size_;
         bool isHorizontal_;
 
@@ -16,15 +16,15 @@ namespace BattleShipGame {
         bool isAlive_;
     public:
         Ship();
-        Ship(long long x, long long y, int size, char orientation);
+        Ship(int64_t x, int64_t y, int size, char orientation);
         ~Ship() = default;
 
-        long long GetX() const;
-        long long GetY() const;
+        int64_t GetX() const;
+        int64_t GetY() const;
         int GetSize() const;
         bool IsAlive() const;
         char GetDirection() const;
 
-        Response Shot(long long x, long long y);
+        Response Shot(int64_t x, int64_t y);
     };
 }
