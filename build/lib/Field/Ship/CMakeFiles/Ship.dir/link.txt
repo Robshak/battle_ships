@@ -1,2 +1,0 @@
-C:\msys64\mingw64\bin\ar.exe qc libShip.a CMakeFiles/Ship.dir/Ship.cpp.obj
-C:\msys64\mingw64\bin\ranlib.exe libShip.a

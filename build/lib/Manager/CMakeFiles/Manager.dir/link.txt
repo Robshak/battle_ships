@@ -1,2 +1,0 @@
-C:\msys64\mingw64\bin\ar.exe qc libManager.a CMakeFiles/Manager.dir/Manager.cpp.obj
-C:\msys64\mingw64\bin\ranlib.exe libManager.a

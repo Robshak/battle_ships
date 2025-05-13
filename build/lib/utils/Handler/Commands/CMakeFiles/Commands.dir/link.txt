@@ -1,2 +1,0 @@
-C:\msys64\mingw64\bin\ar.exe qc libCommands.a CMakeFiles/Commands.dir/Commands.cpp.obj
-C:\msys64\mingw64\bin\ranlib.exe libCommands.a
