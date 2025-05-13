@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc libWorkWithString.a CMakeFiles/WorkWithString.dir/WorkWithString.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe libWorkWithString.a

@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc libOrderedShooting.a CMakeFiles/OrderedShooting.dir/OrderedShooting.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe libOrderedShooting.a

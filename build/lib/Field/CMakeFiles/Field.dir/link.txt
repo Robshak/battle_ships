@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc libField.a CMakeFiles/Field.dir/Field.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe libField.a

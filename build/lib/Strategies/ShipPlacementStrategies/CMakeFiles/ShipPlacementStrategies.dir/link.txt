@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc libShipPlacementStrategies.a CMakeFiles/ShipPlacementStrategies.dir/ShipPlacementStrategies.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe libShipPlacementStrategies.a

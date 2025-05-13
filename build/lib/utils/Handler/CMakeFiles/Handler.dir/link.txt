@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc libHandler.a CMakeFiles/Handler.dir/Handler.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe libHandler.a

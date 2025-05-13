@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc libShootingStrategies.a CMakeFiles/ShootingStrategies.dir/ShootingStrategies.cpp.obj
+C:\msys64\mingw64\bin\ranlib.exe libShootingStrategies.a
