@@ -50,7 +50,11 @@
     "streambuf": "cpp",
     "text_encoding": "cpp",
     "typeinfo": "cpp",
+<<<<<<< HEAD
     "variant": "cpp",
     "fstream": "cpp"
+=======
+    "variant": "cpp"
+>>>>>>> 8c12b06 (create project struct and complete Ship and Field classes)
   }
 }
